@@ -259,8 +259,8 @@ class DraftFactory {
         </div>
         `
         : `\n\n---------- ${localized('Forwarded Message')} ---------\n\n${fields.join(
-            '\n'
-          )}\n\n${body}`,
+          '\n'
+        )}\n\n${body}`,
     });
   }
 
