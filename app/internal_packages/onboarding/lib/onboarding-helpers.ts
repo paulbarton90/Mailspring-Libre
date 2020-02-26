@@ -303,7 +303,6 @@ export function buildGmailAuthURL() {
   })}`;
 }
 
-<<<<<<< HEAD
 export function buildO365AuthURL() {
   return `https://login.microsoftonline.com/common/oauth2/v2.0/authorize?${qs.stringify({
     client_id: O365_CLIENT_ID,
@@ -316,8 +315,6 @@ export function buildO365AuthURL() {
   })}`;
 }
 
-=======
->>>>>>> bd7b29d29... We can now ask Google for auth/contacts permission (not readonly!)
 export async function finalizeAndValidateAccount(account: Account) {
   if (account.settings.imap_host) {
     account.settings.imap_host = account.settings.imap_host.trim();
@@ -351,8 +348,5 @@ export async function finalizeAndValidateAccount(account: Account) {
 
   // Record the date of successful auth
   account.authedAt = new Date();
-<<<<<<< HEAD
   return account;
-=======
->>>>>>> bd7b29d29... We can now ask Google for auth/contacts permission (not readonly!)
 }
