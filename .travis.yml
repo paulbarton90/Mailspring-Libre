@@ -59,7 +59,7 @@ cache:
     - app/node_modules
 
 deploy:
-  skip_cleanup: true
+  cleanup: false
   provider: script
   script:
     - language: bash
