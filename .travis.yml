@@ -34,7 +34,6 @@ jobs:
       name: Linux Build
       env: CC=gcc-4.8 CXX=g++-4.8
       dist: trusty
-<<<<<<< HEAD
       script:
         - npm run lint
         - npm run postinstall
@@ -53,16 +52,6 @@ jobs:
         - powershell npm config set msvs_version 2015
         - powershell npm install && powershell npm run build
         - powershell node app/build/create-windows-installer.js
-=======
-    - os: osx
-      osx_image: xcode10.1
-      env: CC=clang CXX=clang++ SIGN_BUILD=true
-
-script:
-  - npm run lint
-  - npm run postinstall
-  - DEBUG=electron-packager,electron-osx-sign npm run build
->>>>>>> 67d22b0a1... Clean .travis.yml and add MacOS (.dmg) builds (#26)
 
 cache:
   directories:
