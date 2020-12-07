@@ -1,17 +1,35 @@
 version: '{build}'
 
+<<<<<<< HEAD
+=======
+branches:
+  only:
+    - master
+    - /ci.*/
+    - /stable.*/
+
+>>>>>>> libre_1.7.3
 init:
-- ps: $env:commit = $env:appveyor_repo_commit.SubString(0,8)
+  - ps: $env:commit = $env:appveyor_repo_commit.SubString(0,8)
 
 install:
+<<<<<<< HEAD
 - ps: Install-Product node $env:NODE_VERSION
 - ps: npm config set msvs_version 2015
+=======
+  - ps: Install-Product node $env:NODE_VERSION
+  - ps: npm config set msvs_version 2015
+>>>>>>> libre_1.7.3
 
 build_script:
 - cmd: npm install && npm run build
 - cmd: node app/build/create-windows-installer.js
 
+<<<<<<< HEAD
 # Stop Appveyor from "Discovering Tests" forever 
+=======
+# Stop Appveyor from "Discovering Tests" forever
+>>>>>>> libre_1.7.3
 test: off
 
 after_build:
@@ -22,7 +40,7 @@ after_build:
 
 environment:
   matrix:
-  - NODE_VERSION: '11'
+    - NODE_VERSION: '11'
   global:
     SIGN_BUILD: false
 
