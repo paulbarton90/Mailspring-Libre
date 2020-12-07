@@ -33,7 +33,10 @@ class AddContactToolbarWithData extends React.Component<AddContactToolbarProps> 
 
     return (
       <div style={{ display: 'flex', order: 1000 }}>
-        <BindGlobalCommands key={enabled} commands={enabled ? { 'core:add-item': this.onAdd } : {}}>
+        <BindGlobalCommands
+          key={`${enabled}`}
+          commands={enabled ? { 'core:add-item': this.onAdd } : {}}
+        >
           <button
             tabIndex={-1}
             disabled={!enabled}

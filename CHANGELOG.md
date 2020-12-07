@@ -1,8 +1,150 @@
 # Mailspring Changelog
 
+### 1.7.8 (5/24/2020)
+
+**Fixes:**
+
+- Resolves a critical SMTP connection problem on Linux for Office365, manually configured Gmail, and other accounts that used the LOGIN SMTP authentication mechanism. #1996, https://github.com/cyrusimap/cyrus-sasl/pull/613
+
+- Plain text messages using a multipart MIME structure with one or more attachments now render correctly as plaintext.
+
+- "Sync Mail Now" is displayed in Preferences > Shortcuts so it's easier to map it to a custom shortcut. #1941
+
+**Developer:**
+
+- Mailspring now uses CSS properties on `mailspring-workspace` to set the height of the thread list and other key components so themes can customize them! See #2004 for details and thanks to @sergeystoma for this improvement!
+
+### 1.7.7 (5/20/2020)
+
+**Fixes:**
+
+- Mailspring now ships with OpenSSL-1.1.0f on Windows and Linux, which resolves connection issues with Yahoo and other IMAP providers that recently began requiring newer SSL / TLS features. #1974
+
+- When testing IMAP auth, mailcore and libetpan debug logs are included in the "Detailed Log" output, which will make the above easier to track down in the future. #1974
+
+- On Windows, pasting CRLF delimited plain text does not result in newlines being lost. #1756
+
+- Mailspring no longer fails to connect to SMTP servers on older Linux distros (Ubuntu 14, etc.) that do not have `realpath` installed. #1974
+
+- Groups of more than 999 contacts no longer cause “sqlite too many variables” errors during contact sync. #1951
+
+- Google token expiration via password reset is handled properly and presents as an authentication error and not a connection error.
+
+- When replying to plain email using the rich editor, quoted plaintext is converted to HTML #1853
+
+**Developer:**
+
+- On Windows, we ship the mailsync pdb files so stack traces viewed in the sync logs have function names for easy reporting / triage.
+
+- Contact and calendar sync issues no longer halt email sync under any circumstances. We will continue to improve the quality of calendar sync, but want to ensure an uninterrutped email experience.
+
+### 1.7.6 (4/21/2020)
+
+**Fixes:**
+
+- When re-authenticating existing from Preferences > Accounts, Mailspring no longer gets stuck displaying the settings window in some scenarios.
+
+- When applying templates in the composer, Mailspring correctly clears the styling of the first line of your draft.
+
+- When switching signatures in the composer, Mailspring no longer mangles your draft content in some scenarios.
+
+- In the composer, `Select-all` + `Delete` no longer fails to delete your text if the very last block of your message is your signature.
+
+- In the composer, undoing past the end of your "undo history" no longer removes focus from the editor.
+
+- Mailspring now autolinks URLs that contain multiple `?` in the query string correctly.
+
+- Mailspring uses relative URLs for it's own assets, so the filesystem path to the application can safely contain characters like `#` and `?` safely. #1366
+
+- When messages must scroll horizontally, we add 20px to the computed height to account for the scrollbar and avoid clipping the last line of text. #1762
+
+- Fixes an occasional issue that could cause the people sidebar to become blank if the user's LinkedIn handle was malformed. #1909
+
+- A new button in Preferences > Accounts allows you to quickly retrieve + copy the last ~50 lines of your sync logs, making it much easier to collect information we need for debugging.
+
+### 1.7.5 (4/16/2020)
+
+**Features:**
+
+- Search now supports the `NOT` operator as long as there is a positive search term. (ex: `in:inbox NOT is:unread`) #1605
+
+**Fixes:**
+
+- A major issue has been resolved that prevented IMAP accounts (including Yahoo, Yandex, etc.) from being connected correctly. I'm sorry it's taken so long for this patch to be released. Thanks to @Kozzi11 for the fix and everyone for helping to track down the bug. #1868
+
+- Disabling image autoloading now works consistently and also prevents requests for external stylesheets and web fonts that could be used for tracking.
+
+- Mailspring no longer gets "stuck" creating all drafts and replies in plaintext in some cases. #1894
+
+- Localizations have been improved for Simplified Chinese and Russian (Thanks @anthonywong, @raven-kg), and @dvomaks added a Ukranian translation! All three have been added to the "verified localizations" list so they're easier to find in the language dropdown.
+
+- If your machine's hostname contains spaces, Mailspring will strip them when identifying itself to SMTP servers to avoid being rejected in some cases. If it cannot determine your hostname it will fall back to your IP address similar to how Thunderbird works. #1808
+
+- Deleting a "Found in Mail" contact from a CardDAV account (Fastmail, etc.) no longer causes sync to crash. #1722
+
+- On Linux, Mailspring now depends on python2 for Ubuntu 20.
+
+- On Linux, Mailspring's lists itself as a "Mail Client" rather than saying "Mailspring Mailspring" (Thanks @@SaeedBaig)
+
+- When downloading attachments, Mailspring will not overwrite files in the selected folder and will choose unique names for attachments with the same name. #1901
+
+- The LinkedIn URLs in the contact sidebar no longer contain duplicate `in/in/` fragments in some cases. #1875
+
+- In the composer, lines containing a single space or starting with a single space are now preserved upon sending. #1874
+
+- Sent mail reminders look better in the ui-dark theme and returning to the reminders view after clearing the last reminder no longer causes a crash. #689
+
+### 1.7.4 (2/24/2020)
+
+**Features:**
+
+- Mailspring has been approved for read-write access to the Google People API and you can now manage contacts in Google accounts! Mailspring will ask you to go to Preferences > Accounts and click "Re-authorize" to grant access to this additional permission before editing contacts.
+
+- We no longer use `is-online` and DNS checks to verify that the app is online. Instead, Mailspring checks that it can reach your actual IMAP / SMTP mail servers. #1357, #1731, #1123
+
+- Mailspring now supports plaintext mail display and composition! It can be enabled via a new setting, or for a single draft by holding Alt/Option when creating it. Most composer features are disabled in ths mode - for more information, check out https://github.com/Foundry376/Mailspring/issues/52#issuecomment-588627578.
+
+**Fixes:**
+
+- Mailspring now prompts you to confirm that you'd like to delete folders and labels. #1785
+
+- When pasting a table from Excel or other forms of HTML that use `<style>` tags, Mailspring inlines the CSS and preserves it better in your message. #1773
+
+- Adding and removing accounts no longer dismisses the app's preferences. #1684
+
+- The performance of the composer has been greatly improved when there are a large number of recipients.
+
+- The "Never Translate German" dialog and other modals no longer freeze the app on some platforms #1685
+
+- Calendar attachments with times like "2019-11-12T::" are now rendered properly in the conversation view.
+
+- The Russian, Chinese, Latin American Spanish and French translations have been improved (thanks @araven, @keyduq, @laichiaheng, and @raven-kg), and the entire app has been localized into Galician thanks to @markoshorro!
+
+- Mailspring no longer crashes with a concurrency issue in some scenarios trying to launch sync on Linux.
+
+- Scheduling reminders, etc. across the DST boundary now works properly in Brazil, which stopped using DST in 2019. #1767
+
+- The default shortcut for deleting an empty draft is now Ctrl/Cmd + Escape, which works within the text editor. #1776
+
+- Mailspring's email address autolinking no longer includes some UTF-8 control characters (most notably &nbsp;) in the email address link. #1796
+
+**Misc:**
+
+- You can now type IMAP configurations with a port number that starts with a default (eg: 2525 for SMTP). #1702
+
+- You can now select text in the contact sidebar (URLs, bios, addresses, etc.) to copy/paste it.
+
+- Preferences > Shortcuts is now split into two columns on wide displays.
+
+- Mailspring is now automatically notorized for macOS Catalina
+
+### 1.7.3 (2/24/2020)
+
+The 1.7.3 release was broken because of Apple's February 2020 changes to macOS codesigning / "hardened runtime" requirements.
+
 ### 1.7.2 (10/22/2019)
 
-Fixes:
+**Fixes:**
 
 - Resolves some scenarios that caused calendar and contact sync to crash during service autodiscovery, unnecessarily stopping email sync.
 
@@ -24,8 +166,8 @@ Features:
 
 **Incoming Message Translation**: Mailspring now offers to translate emails you receive in other languages. When you choose to translate an email, Mailspring sends the text of the message to a translation service (currently Yandex) and displays the result. Free users can translate up to 50 messages a week - Mailspring Pro removes the limit and allows you to "Automatically Translate" all messages in particular languages.
 
-  * Note: We're waiting on Google to approve Mailspring for access to the "Read-write Contacts" Oauth scope, so Gmail accounts will be read-only until ~December 2019.
-  
+- Note: We're waiting on Google to approve Mailspring for access to the "Read-write Contacts" Oauth scope, so Gmail accounts will be read-only until ~December 2019.
+
 **Contact Management**: Mailspring now includes a full-featured address book available from the `Window` menu! You can create, update, and delete contacts and contact groups in connected Google and CardDAV-compatible accounts (iCloud, FastMail and others.) Mailspring also allows you to turn off automatic suggestions based on your sent mail, and delete individual contact suggestions. When composing an email, you can now type the name of a group to insert all of the contacts in that group as recipients.
 
 Fixes:
@@ -61,7 +203,6 @@ Developer:
 - On Debian Linux, we suggest rather than require gnomekeyring #998
 
 - The (broken) plugin template has been removed - the starter for a Mailspring plugin is now located at https://github.com/Foundry376/Mailspring-Plugin-Starter #1645
-
 
 ### 1.6.3 (7/1/2019)
 

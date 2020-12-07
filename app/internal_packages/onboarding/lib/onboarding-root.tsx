@@ -8,6 +8,7 @@ import WelcomePage from './page-welcome';
 import TutorialPage from './page-tutorial';
 import AccountChoosePage from './page-account-choose';
 import AccountSettingsPageGmail from './page-account-settings-gmail';
+import AccountSettingsPageO365 from './page-account-settings-o365';
 import AccountSettingsPageIMAP from './page-account-settings-imap';
 import AccountOnboardingSuccess from './page-account-onboarding-success';
 import InitialPreferencesPage from './page-initial-preferences';
@@ -18,6 +19,7 @@ const PageComponents = {
   tutorial: TutorialPage,
   'account-choose': AccountChoosePage,
   'account-settings-gmail': AccountSettingsPageGmail,
+  'account-settings-o365': AccountSettingsPageO365,
   'account-settings-imap': AccountSettingsPageIMAP,
   'account-onboarding-success': AccountOnboardingSuccess,
   'initial-preferences': InitialPreferencesPage,

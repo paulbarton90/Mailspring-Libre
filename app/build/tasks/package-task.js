@@ -174,7 +174,6 @@ module.exports = grunt => {
         /\.yml$/i,
         /\.gz/i,
         /\.zip/i,
-        /\.pdb$/,
         /\.h$/,
         /\.cc$/,
         /\.flow$/,
@@ -198,7 +197,27 @@ module.exports = grunt => {
        * runs the `security find-identity` command. Note that
        * setup-mac-keychain-task needs to be run first
        */
-      osxSign: !!process.env.SIGN_BUILD,
+      osxSign: process.env.SIGN_BUILD
+        ? {
+            platform: 'darwin',
+            version: '4.2.2',
+            hardenedRuntime: true,
+            entitlements: path.resolve(
+              grunt.config('appDir'),
+              'build',
+              'resources',
+              'mac',
+              'entitlements.plist'
+            ),
+            'entitlements-inherit': path.resolve(
+              grunt.config('appDir'),
+              'build',
+              'resources',
+              'mac',
+              'entitlements.inherit.plist'
+            ),
+          }
+        : undefined,
       osxNotarize: {
         appleId: process.env.APPLE_ID,
         appleIdPassword: process.env.APPLE_ID_PASSWORD,

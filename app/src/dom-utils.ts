@@ -197,5 +197,23 @@ var DOMUtils = {
   looksLikeBlockElement(node) {
     return ['BR', 'P', 'BLOCKQUOTE', 'DIV', 'TABLE'].includes(node.nodeName);
   },
+
+  getWorkspaceCssNumberProperty(property, defaultValue) {
+    const workspaceElement = document.querySelector('mailspring-workspace');
+    if (workspaceElement) {
+      const value = getComputedStyle(workspaceElement).getPropertyValue(`--${property}`);
+      if (value.length > 0) {
+        const num = Number(value.replace('px', '').trim());
+        if (!isNaN(num)) {
+          return num;
+        } else {
+          console.warn(`Unable to interpret --${property}:${value}, provide a value in px.`);
+        }
+      }
+    }
+
+    return defaultValue;
+  },
 };
+
 export default DOMUtils;

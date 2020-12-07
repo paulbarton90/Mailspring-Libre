@@ -41,20 +41,26 @@ export default class MessageControls extends React.Component<MessageControlsProp
       select: this._onForward,
     };
 
+    const showOriginal = {
+      name: localized('Show Original'),
+      image: 'ic-dropdown-whitespace.png',
+      select: this._onShowOriginal,
+    };
+
     if (!this.props.message.canReplyAll()) {
-      return [reply, forward];
+      return [reply, forward, showOriginal];
     }
     const defaultReplyType = AppEnv.config.get('core.sending.defaultReplyType');
     return defaultReplyType === 'reply-all'
-      ? [replyAll, reply, forward]
-      : [reply, replyAll, forward];
+      ? [replyAll, reply, forward, showOriginal]
+      : [reply, replyAll, forward, showOriginal];
   }
 
   _dropdownMenu(items) {
     const itemContent = item => (
       <span>
         <RetinaImg name={item.image} mode={RetinaImg.Mode.ContentIsMask} />
-        &nbsp;&nbsp;{item.name}
+        &nbsp;&nbsp;{item.name}&nbsp;&nbsp;
       </span>
     );
 

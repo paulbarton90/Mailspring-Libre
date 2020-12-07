@@ -13,7 +13,7 @@ import { Disposable } from 'event-kit';
 export default class PreferencesKeymaps extends React.Component<
   { config: any },
   { templates: string[]; bindings: { [command: string]: [] } }
-> {
+  > {
   static displayName = 'PreferencesKeymaps';
 
   static propTypes = {
