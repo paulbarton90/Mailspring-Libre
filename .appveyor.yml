@@ -1,11 +1,11 @@
 version: '{build}'
 
 init:
-  - ps: $env:commit = $env:appveyor_repo_commit.SubString(0,8)
+- ps: $env:commit = $env:appveyor_repo_commit.SubString(0,8)
 
 install:
-  - ps: Install-Product node $env:NODE_VERSION
-  - ps: npm config set msvs_version 2015
+- ps: Install-Product node $env:NODE_VERSION
+- ps: npm config set msvs_version 2015
 
 build_script:
 - cmd: npm install && npm run build
@@ -29,3 +29,4 @@ environment:
 cache:
   - node_modules -> package.json
   - app\node_modules -> app\package.json
+

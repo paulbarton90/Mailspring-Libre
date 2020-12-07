@@ -15,8 +15,11 @@ You can download compiled versions of Mailspring Libre build for Linux (deb and 
 ## Contributing
 
 Our UI is entirely open-source and pull requests and contributions are welcome! There are a few ways to contribute: building a plugin, building a theme, improving translations, and submitting pull requests to the project itself.
+<<<<<<< HEAD
 
 Mailspring's MailSync, however, is closed source. You can read more about the reasons why this is in the [roadmap](https://github.com/Foundry376/Mailspring/blob/master/ROADMAP.md#why-is-mailsync-closed-source).
+=======
+>>>>>>> 332fe9d85... Updates due to MR
 
 ### Building A Plugin
 
