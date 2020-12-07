@@ -12,14 +12,14 @@ N. B. Please note that **Mailspring Libre build isn't fully open source right no
 
 You can download compiled versions of Mailspring Libre build for Linux (deb and rpm – Windows and macOS support coming soon!) from [GitHub Releases](https://github.com/notpushkin/Mailspring-Libre/releases/). There's also an [AUR package](https://aur.archlinux.org/packages/mailspring-libre/) maintained by [@Panzki](https://github.com/Panzki) (thanks!). Unstable releases are [available on Travis](https://github.com/notpushkin/Mailspring-Libre/issues/1#issuecomment-581483378).
 
+Our UI is entirely open-source and pull requests and contributions are welcome! There are a few ways to contribute: building a plugin, building a theme, improving translations, and submitting pull requests to the project itself.
+
+Mailspring's MailSync, however, is closed source. You can read more about the reasons why this is in the [roadmap](https://github.com/Foundry376/Mailspring/blob/master/ROADMAP.md#why-is-mailsync-closed-source).
+
 ## Contributing
 
 Our UI is entirely open-source and pull requests and contributions are welcome! There are a few ways to contribute: building a plugin, building a theme, improving translations, and submitting pull requests to the project itself.
-<<<<<<< HEAD
 
-Mailspring's MailSync, however, is closed source. You can read more about the reasons why this is in the [roadmap](https://github.com/Foundry376/Mailspring/blob/master/ROADMAP.md#why-is-mailsync-closed-source).
-=======
->>>>>>> 332fe9d85... Updates due to MR
 
 ### Building A Plugin
 
